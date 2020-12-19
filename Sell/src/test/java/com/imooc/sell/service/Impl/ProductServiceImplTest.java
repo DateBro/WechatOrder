@@ -40,7 +40,6 @@ public class ProductServiceImplTest {
 
     @Test
     public void findByProductStatus() {
-        int productStatus = 0;
         List<ProductInfo> results = productService.findUpAll();
         Assert.assertNotEquals(0, results.size());
     }
@@ -57,5 +56,6 @@ public class ProductServiceImplTest {
         productInfo.setProductStatus(0);
         productInfo.setCategoryType(2);
         ProductInfo result = productService.save(productInfo);
+        Assert.assertNotEquals(null, result);
     }
 }
