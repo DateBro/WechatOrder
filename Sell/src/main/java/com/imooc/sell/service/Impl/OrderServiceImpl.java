@@ -1,5 +1,6 @@
 package com.imooc.sell.service.Impl;
 
+import com.imooc.sell.converter.OrderDetail2CartDTOConverter;
 import com.imooc.sell.converter.OrderMaster2OrderDTOConverter;
 import com.imooc.sell.dataobject.OrderDetail;
 import com.imooc.sell.dataobject.OrderMaster;
@@ -14,6 +15,7 @@ import com.imooc.sell.repository.OrderDetailRepository;
 import com.imooc.sell.repository.OrderMasterRepository;
 import com.imooc.sell.service.OrderService;
 import com.imooc.sell.utils.KeyUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -110,17 +113,90 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderDTO cancel(OrderDTO orderDTO) {
-        return null;
+        OrderMaster orderMaster = new OrderMaster();
+
+        // 查看订单状态有无问题，只有新下单的订单可以取消
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
+            log.error("【取消订单】订单状态有问题");
+            throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
+        }
+
+        // 修改订单状态
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        orderMaster.setOrderStatus(OrderStatusEnum.CANCEL.getCode());
+        OrderMaster cancelResult = masterRepository.save(orderMaster);
+        if (cancelResult == null) {
+            log.error("【取消订单】修改订单状态出错");
+            throw new SellException(ResultEnum.ORDER_STATUS_MODIFY_FAIL);
+        }
+        // 增加库存
+        List<OrderDetail> orderDetailList = orderDTO.getDetailList();
+        if (orderDetailList.isEmpty()) {
+            log.error("【取消订单】订单详情列表为空");
+            throw new SellException(ResultEnum.ORDER_DETAIL_NOT_EXIST_ERROR);
+        }
+        List<CartDTO> cartDTOList = OrderDetail2CartDTOConverter.convert(orderDetailList);
+        productService.increaseStock(cartDTOList);
+
+        // 如果已支付，需要退款
+        if (orderDTO.getPayStatus().equals(PayStatusEnum.PAID.getCode())) {
+            // TODO
+        }
+
+        return orderDTO;
     }
 
     @Override
+    @Transactional
     public OrderDTO finish(OrderDTO orderDTO) {
-        return null;
+        OrderMaster orderMaster = new OrderMaster();
+
+        // 查看订单状态有无问题，只有新下单的订单可以完结
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
+            log.error("【完结订单】订单状态有问题");
+            throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
+        }
+
+        // 修改订单状态
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        orderMaster.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
+        OrderMaster finishResult = masterRepository.save(orderMaster);
+        if (finishResult == null) {
+            log.error("【完结订单】修改订单状态出错");
+            throw new SellException(ResultEnum.ORDER_STATUS_MODIFY_FAIL);
+        }
+
+        return orderDTO;
     }
 
     @Override
+    @Transactional
     public OrderDTO pay(OrderDTO orderDTO) {
-        return null;
+        OrderMaster orderMaster = new OrderMaster();
+
+        // 查看订单状态有无问题，只有新下单的订单可以支付
+        if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
+            log.error("【支付订单】订单状态有问题");
+            throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
+        }
+
+        // 查看订单支付状态有无问题，只有未支付的订单可以支付
+        if (!orderDTO.getPayStatus().equals(PayStatusEnum.WAIT.getCode())) {
+            log.error("【支付订单】支付状态有问题");
+            throw new SellException(ResultEnum.PAY_STATUS_ERROR);
+        }
+
+        // 修改支付状态
+        BeanUtils.copyProperties(orderDTO, orderMaster);
+        orderMaster.setPayStatus(PayStatusEnum.PAID.getCode());
+        OrderMaster updateResult = masterRepository.save(orderMaster);
+        if (updateResult == null) {
+            log.error("【支付订单】支付状态更新有问题");
+            throw new SellException(ResultEnum.PAY_STATUS_MODIFY_FAIL);
+        }
+
+        return orderDTO;
     }
 }

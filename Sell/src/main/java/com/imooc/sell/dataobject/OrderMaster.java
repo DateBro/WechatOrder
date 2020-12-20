@@ -36,7 +36,7 @@ public class OrderMaster {
     /**
      * 支付状态，默认为0未支付
      */
-    private int payStatus = PayStatusEnum.WAIT.getCode();
+    private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
     private Date createTime;
 

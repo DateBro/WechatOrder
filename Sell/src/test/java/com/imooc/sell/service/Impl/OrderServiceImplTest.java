@@ -72,13 +72,25 @@ public class OrderServiceImplTest {
 
     @Test
     public void cancel() {
+        OrderDTO orderDTO = service.findOne("1608446073450685801");
+        OrderDTO result = service.cancel(orderDTO);
+        log.info("【取消订单】result = {}", result);
+        Assert.assertNotEquals(null, result);
     }
 
     @Test
     public void finish() {
+        OrderDTO orderDTO = service.findOne("1608446073450685801");
+        OrderDTO result = service.finish(orderDTO);
+        log.info("【完结订单】result = {}", result);
+        Assert.assertNotEquals(null, result);
     }
 
     @Test
     public void pay() {
+        OrderDTO orderDTO = service.findOne("1608446073450685801");
+        OrderDTO result = service.pay(orderDTO);
+        log.info("【支付订单】result = {}", result);
+        Assert.assertNotEquals(null, result);
     }
 }

@@ -32,7 +32,7 @@ public class OrderDTO {
     /**
      * 支付状态，默认为0未支付
      */
-    private int payStatus;
+    private Integer payStatus;
 
     private Date createTime;
 
