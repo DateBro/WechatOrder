@@ -5,6 +5,7 @@ import com.imooc.sell.converter.OrderForm2OrderDTOConverter;
 import com.imooc.sell.dto.OrderDTO;
 import com.imooc.sell.enums.ResultEnum;
 import com.imooc.sell.exception.SellException;
+import com.imooc.sell.service.Impl.BuyerServiceImpl;
 import com.imooc.sell.service.Impl.OrderServiceImpl;
 import com.imooc.sell.utils.ResultVOUtil;
 import com.imooc.sell.viewobject.ResultVO;
@@ -32,6 +33,9 @@ public class BuyerOrderController {
 
     @Autowired
     private OrderServiceImpl orderService;
+
+    @Autowired
+    private BuyerServiceImpl buyerService;
 
     /**
      * 创建订单
@@ -79,14 +83,7 @@ public class BuyerOrderController {
     @GetMapping("/detail")
     public ResultVO<OrderDTO> detail(@RequestParam(value = "openid", required = true) String openid,
                                      @RequestParam(value = "orderId", required = true) String orderId) {
-        // 检查用户合法性，是否具有查询这个订单的权限
-        OrderDTO orderDTO = orderService.findOne(orderId);
-        if (!orderDTO.getBuyerOpenid().equals(openid)) {
-            log.error("【查询订单详情】用户无权限查询该订单");
-            throw new SellException(ResultEnum.BUYER_UNACCESSIBLE_ERROR);
-        }
-
-        return ResultVOUtil.success(orderDTO);
+        return ResultVOUtil.success(buyerService.findOrderOne(openid, orderId));
     }
 
     /**
@@ -95,13 +92,7 @@ public class BuyerOrderController {
     @PostMapping("/cancel")
     public ResultVO cancel(@RequestParam(value = "openid", required = true) String openid,
                                      @RequestParam(value = "orderId", required = true) String orderId) {
-        // 检查用户合法性，是否具有取消这个订单的权限
-        OrderDTO orderDTO = orderService.findOne(orderId);
-        if (!orderDTO.getBuyerOpenid().equals(openid)) {
-            log.error("【查询订单详情】用户无权限取消该订单");
-            throw new SellException(ResultEnum.BUYER_UNACCESSIBLE_ERROR);
-        }
-
+        buyerService.cancelOrder(openid, orderId);
         return ResultVOUtil.success();
     }
 }

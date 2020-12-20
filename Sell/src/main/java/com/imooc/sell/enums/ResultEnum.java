@@ -19,7 +19,7 @@ public enum ResultEnum {
     PAY_STATUS_MODIFY_FAIL(17, "支付状态修改失败"),
     PARAM_ERROR(18, "输入参数错误"),
     CART_EMPTY_ERROR(19, "购物车为空"),
-    BUYER_UNACCESSIBLE_ERROR(20, "用户无权限操作该订单"),
+    ORDER_OWNER_ERROR(20, "该订单不属于当前用户"),
     ;
 
     private Integer code;
