@@ -1,5 +1,6 @@
 package com.imooc.sell.service.Impl;
 
+import com.imooc.sell.converter.OrderMaster2OrderDTOConverter;
 import com.imooc.sell.dataobject.OrderDetail;
 import com.imooc.sell.dataobject.OrderMaster;
 import com.imooc.sell.dataobject.ProductInfo;
@@ -15,10 +16,12 @@ import com.imooc.sell.service.OrderService;
 import com.imooc.sell.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -84,12 +87,26 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO findOne(String orderId) {
-        return null;
+        OrderMaster orderMaster = masterRepository.findOne(orderId);
+        if(orderMaster == null) {
+            throw new SellException(ResultEnum.ORDER_NOT_EXIST_ERROR);
+        }
+        List<OrderDetail> detailList = detailRepository.findByOrderId(orderId);
+        if (detailList.isEmpty()) {
+            throw new SellException(ResultEnum.ORDER_DETAIL_NOT_EXIST_ERROR);
+        }
+        OrderDTO orderDTO = new OrderDTO();
+        BeanUtils.copyProperties(orderMaster, orderDTO);
+        orderDTO.setDetailList(detailList);
+
+        return orderDTO;
     }
 
     @Override
-    public List<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
-        return null;
+    public Page<OrderDTO> findList(String buyerOpenid, Pageable pageable) {
+        Page<OrderMaster> masterPage = masterRepository.findByBuyerOpenid(buyerOpenid, pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(masterPage.getContent());
+        return new PageImpl<OrderDTO>(orderDTOList, pageable, masterPage.getTotalElements());
     }
 
     @Override

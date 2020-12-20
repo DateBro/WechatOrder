@@ -9,13 +9,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @Author DateBro
@@ -59,10 +58,16 @@ public class OrderServiceImplTest {
 
     @Test
     public void findOne() {
+        OrderDTO result = service.findOne("1608446073450685801");
+        log.info("【查询订单】result = {}", result);
+        Assert.assertNotEquals(null, result);
     }
 
     @Test
     public void findList() {
+        PageRequest request = new PageRequest(0, 5);
+        Page<OrderDTO> result = service.findList("myopenid", request);
+        Assert.assertNotEquals(0, result.getTotalElements());
     }
 
     @Test
