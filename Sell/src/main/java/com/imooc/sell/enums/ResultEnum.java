@@ -17,6 +17,9 @@ public enum ResultEnum {
     ORDER_STATUS_MODIFY_FAIL(15, "修改订单状态失败"),
     PAY_STATUS_ERROR(16, "支付状态有问题"),
     PAY_STATUS_MODIFY_FAIL(17, "支付状态修改失败"),
+    PARAM_ERROR(18, "输入参数错误"),
+    CART_EMPTY_ERROR(19, "购物车为空"),
+    BUYER_UNACCESSIBLE_ERROR(20, "用户无权限操作该订单"),
     ;
 
     private Integer code;

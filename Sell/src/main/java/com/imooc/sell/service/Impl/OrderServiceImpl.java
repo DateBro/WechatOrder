@@ -75,6 +75,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // 设置订单属性并保存订单
+        orderDTO.setOrderId(orderId);
         BeanUtils.copyProperties(orderDTO, orderMaster);
         orderMaster.setOrderId(orderId);
         orderMaster.setOrderAmount(orderAmount);
