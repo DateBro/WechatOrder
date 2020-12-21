@@ -15,6 +15,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
+        <weixin-java-mp.version>4.0.0</weixin-java-mp.version>
         <java.version>1.8</java.version>
     </properties>
 
@@ -49,6 +50,12 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>${weixin-java-mp.version}</version>
         </dependency>
     </dependencies>
 
