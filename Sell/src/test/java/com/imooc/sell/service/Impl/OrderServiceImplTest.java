@@ -72,7 +72,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void cancel() {
-        OrderDTO orderDTO = service.findOne("1608446073450685801");
+        OrderDTO orderDTO = service.findOne("1608623259962456186");
         OrderDTO result = service.cancel(orderDTO);
         log.info("【取消订单】result = {}", result);
         Assert.assertNotEquals(null, result);
