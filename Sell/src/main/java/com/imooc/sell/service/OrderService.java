@@ -23,6 +23,8 @@ public interface OrderService {
      */
     Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
 
+    Page<OrderDTO> findList(Pageable pageable);
+
     /**
      * 取消订单
      */

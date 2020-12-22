@@ -1,6 +1,5 @@
 package com.imooc.sell.enums;
 
-import lombok.Data;
 import lombok.Getter;
 
 /**
@@ -22,6 +21,8 @@ public enum ResultEnum {
     ORDER_OWNER_ERROR(20, "该订单不属于当前用户"),
     WECHAT_MP_ERROR(21, "微信公众账号方面错误"),
     WXPAY_NOTIFY_MONEY_VERIFY_ERROR(22, "订单支付异步通知金额校验不通过"),
+    SELLER_CANCEL_ORDER_SUCCESS(23, "卖家端取消订单成功"),
+    SELLER_FINISH_ORDER_SUCCESS(23, "卖家端完结订单成功"),
     ;
 
     private Integer code;

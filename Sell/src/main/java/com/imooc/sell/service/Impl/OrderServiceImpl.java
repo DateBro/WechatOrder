@@ -117,6 +117,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> masterPage = masterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(masterPage.getContent());
+        return new PageImpl<OrderDTO>(orderDTOList, pageable, masterPage.getTotalElements());
+    }
+
+    @Override
     @Transactional
     public OrderDTO cancel(OrderDTO orderDTO) {
         OrderMaster orderMaster = new OrderMaster();
@@ -144,10 +151,11 @@ public class OrderServiceImpl implements OrderService {
         List<CartDTO> cartDTOList = OrderDetail2CartDTOConverter.convert(orderDetailList);
         productService.increaseStock(cartDTOList);
 
-        // 如果已支付，需要退款
-        if (orderDTO.getPayStatus().equals(PayStatusEnum.PAID.getCode())) {
-            payService.refund(orderDTO);
-        }
+        // 如果已支付，需要退款，这里实现暂时有点问题
+        // TODO
+//        if (orderDTO.getPayStatus().equals(PayStatusEnum.PAID.getCode())) {
+//            payService.refund(orderDTO);
+//        }
 
         return orderDTO;
     }
