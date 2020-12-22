@@ -1,6 +1,6 @@
 package com.imooc.sell.controller;
 
-import com.imooc.sell.Form.OrderForm;
+import com.imooc.sell.form.OrderForm;
 import com.imooc.sell.converter.OrderForm2OrderDTOConverter;
 import com.imooc.sell.dto.OrderDTO;
 import com.imooc.sell.enums.ResultEnum;

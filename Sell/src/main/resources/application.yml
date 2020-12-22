@@ -10,6 +10,14 @@ spring:
 server:
   context-path: /sell
 
+#wechat:
+#  mpAppId: wxdb309ca9b6cab881
+#  mpAppSecret: 415c3a6c2c80840c53164e7f3e2c6369
+
 wechat:
-  mpAppId: wxdb309ca9b6cab881
-  mpAppSecret: 415c3a6c2c80840c53164e7f3e2c6369
+  mpAppId: wxd898fcb01713c658
+  mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
+  mchId: 1483469312
+  mchKey: 098F6BCD4621D373CADE4E832627B4F6
+  keyPath: E:\certificates/h5.p12
+  notifyUrl: http://datebrosell.natapp1.cc/sell/pay/notify
