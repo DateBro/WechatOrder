@@ -14,10 +14,21 @@ server:
   context-path: /sell
 
 
-# 微信授权使用测试账号的设置
+# 微信授权使用测试账号的设置，后面测试模板消息的时候虽然用不到开放平台和商户信息的设置
+# 但启动应用在WechatOpenConfig等地方需要这些配置，所以这里也需要写上配置
 #wechat:
 #  mpAppId: wxdb309ca9b6cab881
 #  mpAppSecret: 415c3a6c2c80840c53164e7f3e2c6369
+##  开放平台设置
+#  openAppId: wx6ad144e54af67d87
+#  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
+##  商户信息设置
+#  mchId: 1483469312
+#  mchKey: 098F6BCD4621D373CADE4E832627B4F6
+#  keyPath: E:\certificates/h5.p12
+#  notifyUrl: http://datebrosell.natapp1.cc/sell/pay/notify
+#  templateId:
+#    orderStatus: OO12rV8yLuBdvF2RTdkmh_qRGEmZhkLta-xX402YccQ
 
 # 微信支付和网页登录使用廖师兄的设置
 wechat:

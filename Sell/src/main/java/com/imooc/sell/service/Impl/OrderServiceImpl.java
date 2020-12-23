@@ -14,6 +14,7 @@ import com.imooc.sell.exception.SellException;
 import com.imooc.sell.repository.OrderDetailRepository;
 import com.imooc.sell.repository.OrderMasterRepository;
 import com.imooc.sell.service.OrderService;
+import com.imooc.sell.service.WebSocketService;
 import com.imooc.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -44,6 +45,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayServiceImpl payService;
+
+    @Autowired
+    private PushMessageServiceImpl pushMessageService;
+
+    @Autowired
+    private WebSocketService webSocketService;
 
     @Override
     @Transactional
@@ -88,6 +95,16 @@ public class OrderServiceImpl implements OrderService {
 
         // 记得减库存
         productService.decreaseStock(cartDTOList);
+
+        // 通知买家订单状态
+//        orderDTO.setOrderAmount(orderAmount);
+//        orderDTO.setOrderStatus(OrderStatusEnum.NEW.getCode());
+//        orderDTO.setPayStatus(PayStatusEnum.WAIT.getCode());
+//        pushMessageService.OrderStatusUpdateMessage(orderDTO);
+
+        // 通知卖家有新订单
+        log.info("进入通知卖家有新订单");
+        webSocketService.sendMessage(orderDTO.getOrderId());
 
         return orderDTO;
     }
@@ -157,6 +174,9 @@ public class OrderServiceImpl implements OrderService {
 //            payService.refund(orderDTO);
 //        }
 
+        // 通知买家订单状态
+//        pushMessageService.OrderStatusUpdateMessage(orderDTO);
+
         return orderDTO;
     }
 
@@ -179,6 +199,9 @@ public class OrderServiceImpl implements OrderService {
             log.error("【完结订单】修改订单状态出错");
             throw new SellException(ResultEnum.ORDER_STATUS_MODIFY_FAIL);
         }
+
+        // 通知买家订单状态
+//        pushMessageService.OrderStatusUpdateMessage(orderDTO);
 
         return orderDTO;
     }
