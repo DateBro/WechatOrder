@@ -22,10 +22,12 @@ public enum ResultEnum {
     WECHAT_MP_ERROR(21, "微信公众账号方面错误"),
     WXPAY_NOTIFY_MONEY_VERIFY_ERROR(22, "订单支付异步通知金额校验不通过"),
     SELLER_CANCEL_ORDER_SUCCESS(23, "卖家端取消订单成功"),
-    SELLER_FINISH_ORDER_SUCCESS(23, "卖家端完结订单成功"),
-    PRODUCT_STATUS_ERROR(24, "商品状态错误"),
-    SELLER_ON_SALE_PRODUCT_SUCCESS(23, "卖家端上架商品成功"),
-    SELLER_OFF_SALE_PRODUCT_SUCCESS(23, "卖家端下架商品成功"),
+    SELLER_FINISH_ORDER_SUCCESS(24, "卖家端完结订单成功"),
+    PRODUCT_STATUS_ERROR(25, "商品状态错误"),
+    SELLER_ON_SALE_PRODUCT_SUCCESS(26, "卖家端上架商品成功"),
+    SELLER_OFF_SALE_PRODUCT_SUCCESS(27, "卖家端下架商品成功"),
+    SELLER_LOGIN_FAIL(28, "卖家登录失败"),
+    SELLER_LOGOUT_SUCCESS(29, "卖家登出成功"),
     ;
 
     private Integer code;

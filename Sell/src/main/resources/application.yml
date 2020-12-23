@@ -6,18 +6,35 @@ spring:
     url: jdbc:mysql://192.168.50.116/sell?characterEncoding=utf-8&usingSSL=false
   jackson:
     default-property-inclusion: non_null
+  redis:
+    host: 192.168.50.116
+    port: 6379
 
 server:
   context-path: /sell
 
+
+# 微信授权使用测试账号的设置
 #wechat:
 #  mpAppId: wxdb309ca9b6cab881
 #  mpAppSecret: 415c3a6c2c80840c53164e7f3e2c6369
 
+# 微信支付和网页登录使用廖师兄的设置
 wechat:
+#  公众平台设置
   mpAppId: wxd898fcb01713c658
   mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
+#  开放平台设置
+  openAppId: wx6ad144e54af67d87
+  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
+#  商户信息设置
   mchId: 1483469312
   mchKey: 098F6BCD4621D373CADE4E832627B4F6
   keyPath: E:\certificates/h5.p12
   notifyUrl: http://datebrosell.natapp1.cc/sell/pay/notify
+
+projectUrl:
+  wechatMpAuthorize: http://datebrosell.natapp1.cc/sell
+  wechatOpenAuthorize: http://datebrosell.natapp1.cc/sell
+  sell: http://datebrosell.natapp1.cc
+  wechatLoginProxy: https://open.weixin.qq.com/connect/qrconnect?appid=wx6ad144e54af67d87&redirect_uri=http%3A%2F%2Fsell.springboot.cn%2Fsell%2Fqr%2F廖师兄公众号借用支付账号的openid&response_type=code&scope=snsapi_login&state=http://datebrosell.natapp1.cc/sell/wechat/qrUserInfo
