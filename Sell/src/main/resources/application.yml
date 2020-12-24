@@ -48,4 +48,5 @@ projectUrl:
   wechatMpAuthorize: http://datebrosell.natapp1.cc/sell
   wechatOpenAuthorize: http://datebrosell.natapp1.cc/sell
   sell: http://datebrosell.natapp1.cc
-  wechatLoginProxy: https://open.weixin.qq.com/connect/qrconnect?appid=wx6ad144e54af67d87&redirect_uri=http%3A%2F%2Fsell.springboot.cn%2Fsell%2Fqr%2F廖师兄公众号借用支付账号的openid&response_type=code&scope=snsapi_login&state=http://datebrosell.natapp1.cc/sell/wechat/qrUserInfo
+#  wechatLoginProxy: https://open.weixin.qq.com/connect/qrconnect?appid=wx6ad144e54af67d87&redirect_uri=http%3A%2F%2Fsell.springboot.cn%2Fsell%2Fqr%2F廖师兄公众号借用支付账号的openid&response_type=code&scope=snsapi_login&state=http://datebrosell.natapp1.cc/sell/wechat/qrUserInfo
+  wechatLoginProxy: https://open.weixin.qq.com/connect/qrconnect?appid=wx6ad144e54af67d87&redirect_uri=http%3A%2F%2Fsell.springboot.cn%2Fsell%2Fqr%2FoTgZpwWj6waFRCGAw57vckjGAlt0&response_type=code&scope=snsapi_login&state=http://datebrosell.natapp1.cc/sell/wechat/qrUserInfo

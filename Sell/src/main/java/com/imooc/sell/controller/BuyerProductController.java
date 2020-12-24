@@ -8,8 +8,10 @@ import com.imooc.sell.utils.ResultVOUtil;
 import com.imooc.sell.viewobject.ProductInfoVO;
 import com.imooc.sell.viewobject.ProductVO;
 import com.imooc.sell.viewobject.ResultVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/buyer/product")
+@Slf4j
 public class BuyerProductController {
 
     @Autowired
@@ -28,6 +31,7 @@ public class BuyerProductController {
     private CategoryServiceImpl categoryService;
 
     @GetMapping("/list")
+    @Cacheable(cacheNames = "product", key = "123")
     public ResultVO list() {
         // 查出所有在架的商品
         List<ProductInfo> productInfoList = productService.findUpAll();
