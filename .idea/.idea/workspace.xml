@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a20db8fa-e135-42bb-8ed7-4753fff979c9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Sell/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Sell/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sell/src/main/java/com/imooc/sell/Form/OrderForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Sell/src/main/java/com/imooc/sell/form/OrderForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sell/src/main/java/com/imooc/sell/config/WechatAccountConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Sell/src/main/java/com/imooc/sell/config/WechatAccountConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sell/src/main/java/com/imooc/sell/controller/BuyerOrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Sell/src/main/java/com/imooc/sell/controller/BuyerOrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sell/src/main/java/com/imooc/sell/converter/OrderForm2OrderDTOConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Sell/src/main/java/com/imooc/sell/converter/OrderForm2OrderDTOConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Sell/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Sell/src/main/resources/application.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1m01t1Cd5KUAPetmCLyMZibM4Gz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a20db8fa-e135-42bb-8ed7-4753fff979c9" name="Default Changelist" comment="" />
+      <created>1608615904097</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608615904097</updated>
+      <workItem from="1608615905615" duration="2000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="p4-ProjectCache">
+    <option name="serverState">
+      <list />
+    </option>
+    <option name="clientState">
+      <list />
+    </option>
+    <option name="pendingActions">
+      <list />
+    </option>
+    <option name="changelistState">
+      <State>
+        <option name="lastPendingChangelistId" value="-2" />
+        <option name="linkedChangelistMap">
+          <list />
+        </option>
+        <option name="pendingChangelistMap">
+          <list />
+        </option>
+      </State>
+    </option>
+  </component>
+</project>

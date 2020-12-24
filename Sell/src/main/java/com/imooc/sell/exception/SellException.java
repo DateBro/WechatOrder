@@ -1,11 +1,13 @@
 package com.imooc.sell.exception;
 
 import com.imooc.sell.enums.ResultEnum;
+import lombok.Getter;
 
 /**
  * @Author DateBro
  * @Date 2020/12/20 13:37
  */
+@Getter
 public class SellException extends RuntimeException {
     private Integer code;
 
