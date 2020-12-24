@@ -24,7 +24,6 @@ public class SellExceptionHandler {
     private ProjectUrlConfig projectUrlConfig;
 
     @ExceptionHandler(SellerAuthException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
     public ModelAndView handleSellerException() {
         return new ModelAndView("redirect:".concat(projectUrlConfig.getWechatLoginProxy()));
     }

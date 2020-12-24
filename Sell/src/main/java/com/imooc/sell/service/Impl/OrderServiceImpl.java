@@ -175,6 +175,8 @@ public class OrderServiceImpl implements OrderService {
 //        }
 
         // 通知买家订单状态
+//        orderDTO.setOrderStatus(OrderStatusEnum.CANCEL.getCode());
+//        orderDTO.setPayStatus(PayStatusEnum.WAIT.getCode());
 //        pushMessageService.OrderStatusUpdateMessage(orderDTO);
 
         return orderDTO;
@@ -201,6 +203,8 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // 通知买家订单状态
+//        orderDTO.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
+//        orderDTO.setPayStatus(PayStatusEnum.WAIT.getCode());
 //        pushMessageService.OrderStatusUpdateMessage(orderDTO);
 
         return orderDTO;
